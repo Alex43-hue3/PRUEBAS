@@ -1,14 +1,18 @@
-# NETVISION CATALOG TEST
+# NETVISION CATALOG TEST V2
 
-Prueba independiente del catálogo de películas y series.
+Prueba aislada para catálogo y reproducción.
 
-- Carga `/peliculas?page=N`
-- Carga `/series?page=N`
-- Muestra portadas
-- Detalle
-- Servidores
-- `/streamurl`
-- `qualities.proxy_url`
-- HLS.js
+Películas:
+- catálogo paginado
+- detalle
+- selección automática de fuente
+- prioriza servidor cuyo nombre contenga Vidhide
+- fallback a otras fuentes devueltas por la API
 
-No modifica NETVISION.
+Series:
+- catálogo
+- intenta interpretar temporadas y episodios
+- reproducción por episodio
+- selección automática de fuente
+
+No modifica el proyecto NETVISION.
