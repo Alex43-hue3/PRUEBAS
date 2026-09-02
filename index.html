@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#03060d">
+<title>NETVISION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css?v=902">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<section id="profileGate" class="profile-gate">
+  <div class="profile-gate-glow"></div>
+  <div class="profile-shell">
+    <div class="brand brand-xl">NET<span>VISION</span></div>
+    <span class="eyebrow">SELECCIÓN DE PERFIL</span>
+    <h1>¿Quién está viendo?</h1>
+    <p>Selecciona tu perfil para continuar</p>
+    <div id="profileList" class="profile-list"></div>
+    <button id="manageProfilesGate" class="outline-btn manage-gate"><i class="fa-solid fa-gear"></i> Administrar perfiles</button>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <button id="homeBtn" class="brand brand-button">NET<span>VISION</span></button>
+  <div id="hello" class="hello"></div>
+  <div class="top-actions">
+    <button id="mainMenuBtn" class="main-menu-btn" title="Menú principal"><i class="fa-solid fa-house"></i><span>Menú principal</span></button>
+    <button id="searchBtn" class="icon-btn" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button id="settingsBtn" class="icon-btn" title="Ajustes"><i class="fa-solid fa-gear"></i></button>
+    <button id="profileBtn" class="profile-mini" title="Cambiar perfil"><span id="profileMiniAvatar"></span><span id="profileMiniName">Perfil</span></button>
+  </div>
+</header>
+
+<main>
+<section id="homeScreen" class="screen home-screen">
+  <div class="home-copy">
+    <span class="eyebrow">MENÚ PRINCIPAL</span>
+    <h1>¿Qué quieres ver?</h1>
+    <p>TV en vivo, películas y series en una sola experiencia.</p>
+  </div>
+  <div class="home-options">
+    <button class="home-card tv" data-view="tv"><span class="home-icon"><i class="fa-solid fa-tv"></i></span><strong>TV EN VIVO</strong><small>Canales en directo</small><i class="fa-solid fa-arrow-right go"></i></button>
+    <button class="home-card movies" data-view="movies"><span class="home-icon"><i class="fa-solid fa-film"></i></span><strong>PELÍCULAS</strong><small>Explora nuestro catálogo</small><i class="fa-solid fa-arrow-right go"></i></button>
+    <button class="home-card series" data-view="series"><span class="home-icon"><i class="fa-solid fa-clapperboard"></i></span><strong>SERIES</strong><small>Tus series favoritas</small><i class="fa-solid fa-arrow-right go"></i></button>
+  </div>
+  <button id="myListBtn" class="my-list-btn"><i class="fa-regular fa-bookmark"></i> Mi lista</button>
+</section>
+
+<section id="tvScreen" class="screen hidden page-screen">
+  <div class="tv-layout">
+    <aside id="channelSidebar" class="channel-sidebar">
+      <div class="sidebar-head">
+        <div><span class="eyebrow">TV EN VIVO</span><h2 id="categoryTitle">Todos los canales</h2></div>
+        <button id="closeSidebar" class="icon-btn mobile-only"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="channel-search"><i class="fa-solid fa-magnifying-glass"></i><input id="channelSearch" placeholder="Buscar canal..." autocomplete="off"></div>
+      <div id="categoryTabs" class="category-tabs"></div>
+      <div id="channelList" class="channel-list"></div>
+    </aside>
+    <section class="tv-stage">
+      <div id="tvPlayer" class="tv-player">
+        <video id="tvVideo" playsinline webkit-playsinline controls></video>
+        <div id="tvEmpty" class="tv-empty"><i class="fa-solid fa-tower-broadcast"></i><h2>Selecciona un canal</h2><p>Elige un canal para comenzar.</p></div>
+        <div class="tv-top-overlay"><button class="player-back" data-home><i class="fa-solid fa-arrow-left"></i><span>TV</span></button><div class="current-channel"><strong id="tvCurrentName">Sin canal</strong><span id="tvCurrentGroup">TV EN VIVO</span></div><span class="live-badge"><i></i> EN VIVO</span></div>
+        <button id="tvPrev" class="switch-arrow prev" aria-label="Canal anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="tvNext" class="switch-arrow next" aria-label="Canal siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="tv-hint">Presiona <b>←</b> <b>→</b> para cambiar de canal</div>
+        <div class="fullscreen-controls"><button id="fsPrev" aria-label="Canal anterior"><i class="fa-solid fa-chevron-left"></i></button><button id="fsClose" aria-label="Salir de pantalla completa"><i class="fa-solid fa-compress"></i></button><button id="fsNext" aria-label="Canal siguiente"><i class="fa-solid fa-chevron-right"></i></button></div>
+      </div>
+      <div class="tv-now-bar">
+        <div id="tvLogo" class="tv-logo"><i class="fa-solid fa-tv"></i></div>
+        <div class="now-copy"><strong id="tvNowName">Selecciona un canal</strong><small id="tvNowGroup">—</small></div>
+        <button id="tvListBtn" class="outline-btn compact list-toggle-btn"><i class="fa-regular fa-bookmark"></i><span>Mi lista</span></button>
+        <button id="tvFullscreen" class="primary-btn compact"><i class="fa-solid fa-expand"></i><span>Pantalla completa</span></button>
+        <button id="openSidebar" class="primary-btn compact mobile-only"><i class="fa-solid fa-list"></i><span>Lista</span></button>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="catalogScreen" class="screen hidden page-screen">
+  <div class="page-head">
+    <div><span id="catalogEyebrow" class="eyebrow">CATÁLOGO</span><h1 id="catalogTitle">Películas</h1><p id="catalogSubtitle"></p></div>
+    <button class="back-home" data-home><i class="fa-solid fa-arrow-left"></i> Inicio</button>
+  </div>
+  <div class="catalog-toolbar">
+    <div class="catalog-toolbar-left">
+      <div class="section-search"><i class="fa-solid fa-magnifying-glass"></i><input id="catalogSearch" placeholder="Buscar película o serie..." autocomplete="off"><button id="catalogSearchClear" class="search-clear hidden" title="Limpiar"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="catalogStatus" class="catalog-status">Cargando…</div>
+      <div id="catalogGenres" class="catalog-genres" aria-label="Categorías"></div>
+    </div>
+    <button id="catalogRefresh" class="icon-btn" title="Actualizar"><i class="fa-solid fa-rotate"></i></button>
+  </div>
+  <div id="catalogGrid" class="catalog-grid"></div>
+  <div id="catalogLoading" class="catalog-loading hidden"><span class="spinner"></span> Consultando catálogo...</div>
+  <button id="catalogMore" class="load-more hidden">Cargar más</button>
+</section>
+
+<section id="mediaScreen" class="screen hidden media-screen">
+  <div class="media-top"><button id="mediaBack" class="back-home"><i class="fa-solid fa-arrow-left"></i> Volver</button><span id="mediaTypeLabel">PELÍCULA</span></div>
+  <div class="media-layout">
+    <section class="media-main">
+      <div id="mediaPlayer" class="media-player">
+        <video id="mediaVideo" playsinline webkit-playsinline controls preload="metadata"></video>
+        <iframe id="mediaFrame" class="media-frame hidden" src="about:blank" aria-hidden="true" tabindex="-1"></iframe>
+        <div id="mediaLoading" class="media-loading hidden"><span class="spinner"></span><span id="mediaLoadingText">Buscando fuente...</span></div>
+        <div id="mediaEmpty" class="media-empty hidden"><i class="fa-solid fa-film"></i><strong>No se encontró una fuente reproducible</strong><small>La API no entregó una fuente compatible con el navegador.</small><button id="mediaRetry" class="primary-btn">Intentar de nuevo</button></div>
+        <button id="mediaFullscreen" class="media-fullscreen" title="Pantalla completa"><i class="fa-solid fa-expand"></i></button>
+      </div>
+      <div class="media-info-card">
+        <div class="media-poster"><img id="mediaPoster" alt=""></div>
+        <div class="media-copy"><h1 id="mediaTitle"></h1><div id="mediaMeta" class="media-meta"></div><p id="mediaDescription"></p><div class="media-actions"><button id="mediaPlayAgain" class="primary-btn"><i class="fa-solid fa-play"></i> Reproducir</button><button id="mediaListBtn" class="outline-btn"><i class="fa-regular fa-bookmark"></i> <span>Agregar a mi lista</span></button></div></div>
+      </div>
+    </section>
+    <aside id="episodesPanel" class="episodes-panel hidden">
+      <div class="episodes-head"><div><span class="eyebrow">EPISODIOS</span><h2 id="seasonTitle">Temporada</h2></div><button id="closeEpisodes" class="icon-btn"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="episodeList" class="episode-list"></div>
+    </aside>
+  </div>
+</section>
+</main>
+</div>
+
+<div id="profileModal" class="modal hidden"><div class="modal-backdrop" data-close></div><div class="profile-modal"><button class="modal-close" data-close><i class="fa-solid fa-xmark"></i></button><span class="eyebrow">PERFIL</span><h2 id="profileModalTitle">Crear perfil</h2><div class="profile-edit-head"><div id="editAvatar" class="avatar-large"></div><label>Nombre<input id="profileName" maxlength="18" placeholder="Tu nombre"></label></div><h3>Avatares</h3><div id="avatarPicker" class="avatar-picker"></div><h3>Fondos</h3><div id="backgroundPicker" class="background-picker"></div><button id="saveProfile" class="primary-btn full">Guardar perfil</button><button id="deleteProfile" class="outline-btn danger full hidden">Eliminar perfil</button><button id="addProfileFromSettings" class="outline-btn full">+ Agregar otro perfil</button></div></div>
+</div>
+
+<div id="profileSwitchModal" class="modal hidden"><div class="modal-backdrop" data-close-switch></div><div class="switch-modal"><button class="modal-close" data-close-switch><i class="fa-solid fa-xmark"></i></button><span class="eyebrow">PERFILES</span><h2>¿Quién está viendo?</h2><p class="settings-note">Cambia de perfil sin salir de NETVISION.</p><div id="profileSwitchList" class="profile-switch-list"></div><button id="switchAddProfile" class="outline-btn full"><i class="fa-solid fa-plus"></i> Crear perfil</button></div></div>
+
+<div id="settingsModal" class="modal hidden"><div class="modal-backdrop" data-close-settings></div><div class="settings-modal"><button class="modal-close" data-close-settings><i class="fa-solid fa-xmark"></i></button><span class="eyebrow">CONFIGURACIÓN</span><h2>Ajustes</h2><div class="settings-section"><h3>Perfiles</h3><button id="settingsCreateProfile" class="setting-row"><span><i class="fa-solid fa-user-plus"></i><b>Crear perfil</b><small>Crea otro perfil para compartir NETVISION.</small></span><i class="fa-solid fa-chevron-right"></i></button><button id="settingsManageProfiles" class="setting-row"><span><i class="fa-solid fa-users"></i><b>Administrar perfiles</b><small>Edita nombre, avatar y fondo.</small></span><i class="fa-solid fa-chevron-right"></i></button></div><div class="settings-section"><h3>Reproducción</h3><label class="setting-toggle"><span><i class="fa-solid fa-play"></i><b>Reproducción automática</b><small>Intenta reproducir el contenido al encontrar una fuente.</small></span><input id="settingAutoplay" type="checkbox"><span class="toggle-ui"></span></label></div><div class="settings-section"><h3>Interfaz</h3><label class="setting-toggle"><span><i class="fa-solid fa-wand-magic-sparkles"></i><b>Reducir animaciones</b><small>Reduce transiciones y efectos visuales.</small></span><input id="settingReducedMotion" type="checkbox"><span class="toggle-ui"></span></label></div><div class="settings-section"><h3>Datos</h3><button id="settingsResetPreferences" class="setting-row danger-row"><span><i class="fa-solid fa-rotate-left"></i><b>Restablecer preferencias</b><small>Restaura los ajustes de NETVISION, sin borrar tus perfiles.</small></span><i class="fa-solid fa-chevron-right"></i></button></div></div></div>
+
+<div id="myListModal" class="modal hidden"><div class="modal-backdrop" data-close-list></div><div class="list-modal"><button class="modal-close" data-close-list><i class="fa-solid fa-xmark"></i></button><span class="eyebrow">MI LISTA</span><h2>Contenido guardado</h2><div id="myListResults" class="my-list-results"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
+<script src="api.js?v=902"></script>
+<script src="app.js?v=902"></script>
+<script src="perfiles.js?v=902"></script>
+<script src="tv.js?v=902"></script>
+<script src="movies.js?v=902"></script>
+<script src="reproductor.js?v=1201"></script>
+</body>
+</html>
